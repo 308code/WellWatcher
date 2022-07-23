@@ -1,0 +1,27 @@
+<h4>Recent Well Production</h4>
+<div class="recent-production-list-div">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col" class="header col-1">Permit #</th>
+    <th scope="col" class="header col-3">Well</th>
+    <th scope="col" class="header col-2">County</th>
+    <th scope="col" class="header col-2">Township</th>
+    <th scope="col" class="header col-1">Type</th>
+    <th scope="col" class="header col-1">Qty</th>
+    <th scope="col" class="header col-2">Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let well of wells">
+    <th scope="row"><a routerLink="/production/{{well.getId()}}">{{well.getPermitNumber()}}</a></th>
+    <td>{{well.getWellName()}}&nbsp;#{{well.getWellNumber()}}</td>
+    <td>{{well.getCountyName()}}</td>
+    <td>{{well.getTownshipName()}}</td>
+    <td>{{well.getProduction()[well.getProduction().length -1].getType()}}</td>
+    <td>{{well.getProduction()[well.getProduction().length -1].getQuantity()}}</td>
+    <td>{{well.getProduction()[well.getProduction().length - 1].getPayedDate().toISOString().slice(0,10)}}</td>
+  </tr>
+  </tbody>
+</table>
+</div>

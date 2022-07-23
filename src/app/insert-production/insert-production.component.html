@@ -1,0 +1,34 @@
+<div>
+
+  <label for="wellNameAndNumber">Well:</label>
+  <select  name="wellNameAndNumber" id="wellNameAndNumber" #selectedWell (change)="switchWell(selectedWell.value)">
+    <option *ngFor="let w of wells" [value]="w.getId()"
+            [selected]="well.getId() === w.getId()">{{w.getWellName()}} #{{w.getWellNumber()}}</option>
+  </select>
+
+  <label for="permitNumber">Permit #:</label>
+  <input id="permitNumber" disabled=true type="text-field" #permitNumber readonly value="{{well.getPermitNumber()}}"/>
+  <br/><br/>
+  <label for="productionType" id="productionTypeLabel">Production Type:</label>
+  <select name="productionType" #productionType id="productionType">
+    <option value="Oil" [selected]="well.getProduction()[well.getProduction().length -1].getType() === 'Oil'">Oil</option>
+    <option value="Gas" [selected]="well.getProduction()[well.getProduction().length - 1].getType() === 'Gas'">Gas</option>
+    <option value="Brine" [selected]="well.getProduction()[well.getProduction().length - 1].getType() === 'Brine'">Brine</option>
+  </select>
+  <br/>
+  <label for="productionQuantity" id="productionQuantityLabel">Quantity:</label>
+  <input id="productionQuantity" #productionQuantity type="number" step="0.01"
+         value="{{well.getProduction()[well.getProduction().length -1].getQuantity()}}"/>
+  <br/>
+  <label for="dateProduced" id="dateProducedLabel">Date Produced:</label>
+  <input id="dateProduced" #dateProduced    type="date" [value]="well.getProduction()[well.getProduction().length-1].getPayedDate().toISOString().slice(0,10)"/>
+  <br />
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-secondary" >Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="insertProduction(
+    selectedWell.value,
+    productionType.value,
+    productionQuantity.valueAsNumber,
+    dateProduced.valueAsDate)">Add Well</button>
+  </div>
+</div>
