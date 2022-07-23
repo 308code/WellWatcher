@@ -25,7 +25,7 @@ export class InsertProductionComponent implements OnInit {
   insertProduction(id: string, type: string, quantity: number, dateProduced: Date | null): void{
     this.wellService.insertProduction(id,type,quantity,dateProduced);
     this.router.navigate(['/']).then(() => {
-      console.log("Added production for id: " + id + " type: " + type +
+      console.log("WellWatcher ==> Added production for id: " + id + " type: " + type +
         " quantity: " + quantity + " date: " + dateProduced?.toISOString().slice(0,10))
     });
   }
