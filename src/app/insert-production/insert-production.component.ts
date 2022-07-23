@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {WellDaoService} from "../dao/well-dao.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Well} from "../model/well.model";
 import {Production} from "../model/production.model";
@@ -23,8 +22,12 @@ export class InsertProductionComponent implements OnInit {
     this.wells = this.wellService.getWells(new Date(),new Date());
   }
 
-  insertProduction(id: string, type: string, quantity: number, dateProduced: any): void{
+  insertProduction(id: string, type: string, quantity: number, dateProduced: Date | null): void{
     this.wellService.insertProduction(id,type,quantity,dateProduced);
+    this.router.navigate(['/']).then(() => {
+      console.log("Added production for id: " + id + " type: " + type +
+        " quantity: " + quantity + " date: " + dateProduced?.toISOString().slice(0,10))
+    });
   }
 
   switchWell(selectedWell: string): void{
