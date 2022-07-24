@@ -1,1 +1,45 @@
-<p>production works!</p>
+<div class="container" id="container-div">
+  <div class="row">
+    <label class="col-1 text-end" for="1wellNameAndNumber">Well:</label>
+    <select class="col-3" name="wellNameAndNumber" id="1wellNameAndNumber" #selectedWell
+            (change)="switchWell(selectedWell.value)">
+      <option *ngFor="let w of wells" [value]="w.getId()"
+              [selected]="well.getId() === w.getId()">{{w.getWellName()}} #{{w.getWellNumber()}}</option>
+    </select>
+    <h5 class="col-1 text-end">({{well.getPermitNumber()}})</h5>
+  </div>
+  <br/>
+  <div class="table-div">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col" class="header col-1"></th>
+      <th scope="col" class="header col-4">Date Produced</th>
+      <th scope="col" class="header col-3">Type</th>
+      <th scope="col" class="header col-3">Qty</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let prod of well.getProduction()">
+      <td><input #radioSelection name="selection" value="{{well.getId()}}" id="{{well.getId()}}" type="radio"/></td>
+      <td>{{prod.getPayedDate().toISOString().slice(0,10)}}</td>
+      <td>{{prod.getType()}}</td>
+      <td>{{prod.getQuantity()}}</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <br/>
+
+  <div class="row">
+    <div class="col-2"></div>
+    <button type="button" [routerLink]="['/']" class="btn btn-secondary col-2">Cancel</button>
+    <button type="button" class="btn btn-danger col-2" (click)="deleteProduction(getSelectedPosition())">
+      Delete Production
+    </button>
+    <button type="button" class="btn btn-primary col-2">
+      Update Production
+    </button>
+  </div>
+</div>
+
