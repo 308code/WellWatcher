@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {WellDaoService} from "../dao/well-dao.service";
-import {Well} from "../model/well.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +17,9 @@ export class WellService {
 
   public insertProduction(id: string, type: string, quantity: number, dateProduced: any): void{
     this.wellDaoService.insertProduction(id, type,quantity,dateProduced);
+  }
+
+  public deleteProduction(id: string, position: number){
+    this.wellDaoService.deleteProduction(id, position);
   }
 }

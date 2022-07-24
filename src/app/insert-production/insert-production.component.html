@@ -6,9 +6,7 @@
       <option *ngFor="let w of wells" [value]="w.getId()"
               [selected]="well.getId() === w.getId()">{{w.getWellName()}} #{{w.getWellNumber()}}</option>
     </select>
-    <label class="col-1 text-end" for="permitNumber">Permit #:</label>
-    <input class="col-2" id="permitNumber" disabled=true type="text-field" #permitNumber readonly
-           value="{{well.getPermitNumber()}}"/>
+    <h5 class="col-1 text-end">({{well.getPermitNumber()}})</h5>
   </div>
   <br/>
   <div class="row">

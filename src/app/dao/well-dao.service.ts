@@ -40,6 +40,15 @@ export class WellDaoService {
     return -1;
   }
 
+  public deleteProduction(id: string, position: number) : void{
+    const well: Well = this.wells[this.getWellIndex(id)];
+    for (let i: number = 0; i < well.getProduction().length; i++) {
+      if(i === position){
+        well.getProduction().splice(position,1);
+      }
+    }
+  }
+
   private getWells(fromDate: Date, toDate: Date): Well[]{
     let wells : Well[] = [];
     wells.push(new Well("62391268ace85f24167de3ec","23416",
