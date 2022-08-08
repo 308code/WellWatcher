@@ -22,9 +22,9 @@
     <tbody>
     <tr *ngFor="let prod of well.getProduction()">
       <td><input #radioSelection name="selection" value="{{well.getId()}}" id="{{well.getId()}}" type="radio"/></td>
-      <td>{{prod.getPayedDate().toISOString().slice(0,10)}}</td>
-      <td>{{prod.getType()}}</td>
-      <td>{{prod.getQuantity()}}</td>
+<!--      <td>{{prod.getPayedDate().toISOString().slice(0,10)}}</td>-->
+<!--      <td>{{prod.getType()}}</td>-->
+<!--      <td>{{prod.getQuantity()}}</td>-->
     </tr>
     </tbody>
   </table>
@@ -35,10 +35,11 @@
     <div class="col-2"></div>
     <button type="button" [routerLink]="['/']" class="btn btn-secondary col-2">Cancel</button>
     <button type="button" class="btn btn-danger col-2" (click)="deleteProduction(getSelectedPosition())">
-      Delete Production
+      Delete
     </button>
-    <button type="button" class="btn btn-primary col-2">
-      Update Production
+    <button type="button" class="btn btn-primary col-2"
+            [routerLink]="['/', 'production', '/','{{well.getId()}}','/', 'getSelectedPosition()']">
+      Update
     </button>
   </div>
 </div>
