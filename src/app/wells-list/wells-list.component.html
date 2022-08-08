@@ -1,1 +1,18 @@
-<p>wells-list works!</p>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col" class="header col-1">Permit #</th>
+    <th scope="col" class="header col-3">Well</th>
+    <th scope="col" class="header col-2">County</th>
+    <th scope="col" class="header col-2">Township</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let well of wells">
+    <th scope="row"><a routerLink="/production/{{well.getPermitNumber()}}">{{well.getPermitNumber()}}</a></th>
+    <td>{{well.getWellName()}}&nbsp;#{{well.getWellNumber()}}</td>
+    <td>{{well.getCountyName()}}</td>
+    <td>{{well.getTownshipName()}}</td>
+  </tr>
+  </tbody>
+</table>
