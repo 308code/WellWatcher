@@ -1,7 +1,8 @@
 import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {WellService} from "../service/well.service";
+import {Well} from "../model/well.model";
+import {Production} from "../model/production.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {WellClass} from "../model/WellClass";
 
 @Component({
   selector: 'app-production',
@@ -11,19 +12,19 @@ import {WellClass} from "../model/WellClass";
 export class ProductionComponent implements OnInit {
   @ViewChildren('radioSelection') radioSelections: QueryList<any> | undefined;
   today: Date = new Date();
-  wells : WellClass[] = [];
-  well: WellClass = new WellClass("","","","","",
-    "","",new Array());
+  wells : Well[] = [];
+  well: Well = new Well("","","","","","",
+    new Date(),new Array(new Production("",0,new Date())));
 
   constructor(private wellService: WellService, private route: ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
-    this.wellService.getAllWells();
+    this.wells = this.wellService.getWells(new Date(),new Date());
     this.well = this.wells[0];
   }
 
   switchWell(selectedWell: string): void{
-    // this.well = this.wellService.getWell(selectedWell);
+    this.well = this.wellService.getWell(selectedWell);
   }
 
   insertProduction(id: string, type: string, quantity: number, dateProduced: Date | null): void{

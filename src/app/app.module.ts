@@ -10,19 +10,15 @@ import { WellsListComponent } from './wells-list/wells-list.component';
 import { ProductionComponent } from './production/production.component';
 import { ReportsComponent } from './reports/reports.component';
 import {FormsModule} from "@angular/forms";
-import { UpdateProductionComponent } from './update-production/update-production.component';
-import { HttpClientModule } from '@angular/common/http';
-import { WellComponent } from './well/well.component';
 
 const appRoutes: Routes =  [
   { path: '' , component: RecentProductionListComponent},
   { path: 'wells' , component: WellsListComponent},
-  { path: 'wells/:id' , component: WellComponent},
   { path: 'production' , component: ProductionComponent},
   { path: 'production/:id' , component: InsertProductionComponent},
-  { path: 'reports' , component: ReportsComponent},
-  { path: 'production/:id/:pos', component: UpdateProductionComponent}
+  { path: 'reports' , component: ReportsComponent}
 ]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,15 +27,12 @@ const appRoutes: Routes =  [
     InsertProductionComponent,
     WellsListComponent,
     ProductionComponent,
-    ReportsComponent,
-    UpdateProductionComponent,
-    WellComponent
+    ReportsComponent
   ],
     imports: [
         BrowserModule,
         RouterModule.forRoot(appRoutes),
-        FormsModule,
-        HttpClientModule
+        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

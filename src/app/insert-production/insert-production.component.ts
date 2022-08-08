@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {Well} from "../model/well.model";
+import {Production} from "../model/production.model";
 import {WellService} from "../service/well.service";
-import {WellClass} from "../model/WellClass";
 
 @Component({
   selector: 'app-insert-production',
@@ -10,21 +11,19 @@ import {WellClass} from "../model/WellClass";
 })
 export class InsertProductionComponent implements OnInit {
   today: Date = new Date();
-  wells : WellClass[] = [];
-  well: WellClass = new WellClass("","","","","","","",
-    new Array());
+  wells : Well[] = [];
+  well: Well = new Well("","","","","","",
+    new Date(),new Array(new Production("",0,new Date())));
 
   constructor(private wellService: WellService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     if(this.route.snapshot.params['id']) {
-      // this.well = this.wellService.getWell(this.route.snapshot.params['id']);
+      this.well = this.wellService.getWell(this.route.snapshot.params['id']);
     }else{
-      // this.well = this.wellService.getWell("623914f9ace85f24167de3fe");
+      this.well = this.wellService.getWell("623914f9ace85f24167de3fe");
     }
-    this.wellService.getAllWells().subscribe(wells => {
-      this.wells = wells;
-    });
+    this.wells = this.wellService.getWells(new Date(),new Date());
   }
 
   insertProduction(id: string, type: string, quantity: number, dateProduced: Date | null): void{
@@ -39,6 +38,6 @@ export class InsertProductionComponent implements OnInit {
   }
 
   switchWell(selectedWell: string): void{
-    // this.well = this.wellService.getWell(selectedWell);
+    this.well = this.wellService.getWell(selectedWell);
   }
 }
