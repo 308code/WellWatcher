@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WellService} from "../service/well.service";
+import {WellClass} from "../model/WellClass";
 
 @Component({
   selector: 'app-recent-production-list',
@@ -8,10 +9,13 @@ import {WellService} from "../service/well.service";
   providers: [WellService]
 })
 export class RecentProductionListComponent implements OnInit {
-  wells: any[] = [];
+  wells: WellClass[] = [];
   constructor(private wellService: WellService){ }
 
   ngOnInit(): void {
-    // this.wells = this.wellService.getWells(new Date(),new Date());
+    this.wellService.getAllWells().subscribe(wells =>{
+      this.wells = wells;
+      console.log(JSON.stringify(this.wells));
+    });
   }
 }

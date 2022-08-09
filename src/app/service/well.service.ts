@@ -5,6 +5,7 @@ import {map, Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {WellClass} from "../model/WellClass";
+import {ProductionClass} from "../model/productionClass.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,19 @@ export class WellService {
 
   getAllWells(): Observable<WellClass[]>{
     let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells';
+    let production: ProductionClass[] = [];
     return this.http.get<Well[]>(url)
       .pipe(map(responseData => {
         let wells: WellClass[] = [];
         responseData.forEach( well => {
+          production = [];
+          well.production.forEach( prod => {
+            console.log(well.wellName + ' ' + well.wellNumber + ':' + prod.payedDate);
+            production.push(new ProductionClass(prod.type,prod.quantity,prod.payedDate));
+          });
           wells.push(new WellClass(well.id,well.apiNumber,well.permitNumber,well.wellName,well.wellNumber,well.county,
-            well.township,well.production));
+            well.township,production));
+
         });
         return wells;
       }));
@@ -29,8 +37,12 @@ export class WellService {
     let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/' + id;
     return this.http.get<Well>(url)
       .pipe(map(responseData => {
+        let production: ProductionClass[] = [];
+        responseData.production.forEach( prod => {
+          production.push(new ProductionClass(prod.type,prod.quantity,prod.payedDate));
+        })
           return new WellClass(responseData.id,responseData.apiNumber, responseData.permitNumber, responseData.wellName,
-            responseData.wellNumber, responseData.county, responseData.township, responseData.production);
+            responseData.wellNumber, responseData.county, responseData.township, production);
       }));
   }
 

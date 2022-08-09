@@ -1,11 +1,11 @@
 
-import {Production} from "./production.model";
+import {ProductionClass} from "./productionClass.model";
 
 export class WellClass {
   constructor(private id: string = "", private apiNumber: string = "", private permitNumber: string="",
-              private wellName: string = "", private wellNumber: string = "1",
-              private countyName: string = "cn", private townshipName: string = "tn",
-              private production: Production[]) {}
+              private wellName: string = "", private wellNumber: string = "",
+              private countyName: string = "", private townshipName: string = "",
+              private production: ProductionClass[]) {}
 
   public getId(): string {
     return this.id;
@@ -67,7 +67,7 @@ export class WellClass {
     return this.production;
   }
 
-  public setProduction(value: Production[]){
+  public setProduction(value: ProductionClass[]){
     this.production = value;
   }
 }
