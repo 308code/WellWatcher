@@ -12,19 +12,26 @@ export class InsertProductionComponent implements OnInit {
   today: Date = new Date();
   wells : WellClass[] = [];
   well: WellClass = new WellClass("","","","","","","",
-    new Array());
+    []);
 
   constructor(private wellService: WellService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    if(this.route.snapshot.params['id']) {
-      // this.well = this.wellService.getWell(this.route.snapshot.params['id']);
-    }else{
-      // this.well = this.wellService.getWell("623914f9ace85f24167de3fe");
+    if(this.wells.length == 0) {
+      this.wellService.getAllWells().subscribe(wells => {
+        this.wells = wells;
+      });
     }
-    this.wellService.getAllWells().subscribe(wells => {
-      this.wells = wells;
-    });
+    if(this.route.snapshot.params['id']) {
+       this.wellService.getWell(this.route.snapshot.params['id']).subscribe( well =>{
+         this.well = well;
+       });
+    }else{
+       this.wellService.getWell("623914f9ace85f24167de3fe").subscribe( well =>{
+         this.well = well;
+       });
+    }
+    console.log("After INIT ==>  " + JSON.stringify(this.wells))
   }
 
   insertProduction(id: string, type: string, quantity: number, dateProduced: Date | null): void{
@@ -39,6 +46,8 @@ export class InsertProductionComponent implements OnInit {
   }
 
   switchWell(selectedWell: string): void{
-    // this.well = this.wellService.getWell(selectedWell);
+     this.wellService.getWell(selectedWell).subscribe( well =>{
+       this.well = well;
+     });
   }
 }

@@ -22,9 +22,9 @@
     <tbody>
     <tr *ngFor="let prod of well.getProduction()">
       <td><input #radioSelection name="selection" value="{{well.getId()}}" id="{{well.getId()}}" type="radio"/></td>
-<!--      <td>{{prod.getPayedDate().toISOString().slice(0,10)}}</td>-->
-<!--      <td>{{prod.getType()}}</td>-->
-<!--      <td>{{prod.getQuantity()}}</td>-->
+      <td>{{prod.getPayedDate().toISOString().slice(0,10)}}</td>
+      <td>{{prod.getType()}}</td>
+      <td>{{prod.getQuantity()}}</td>
     </tr>
     </tbody>
   </table>
