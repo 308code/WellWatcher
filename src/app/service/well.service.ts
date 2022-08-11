@@ -22,11 +22,10 @@ export class WellService {
         responseData.forEach( well => {
           production = [];
           well.production.forEach( prod => {
-            console.log(well.wellName + ' ' + well.wellNumber + ':' + prod.payedDate);
             production.push(new ProductionClass(prod.type,prod.quantity,prod.payedDate));
           });
-          wells.push(new WellClass(well.id,well.apiNumber,well.permitNumber,well.wellName,well.wellNumber,well.county,
-            well.township,production));
+          wells.push(new WellClass(well.id,well.apiNumber,well.permitNumber,well.wellName,well.wellNumber,well.countyName,
+            well.townshipName,production));
 
         });
         return wells;
@@ -42,7 +41,7 @@ export class WellService {
           production.push(new ProductionClass(prod.type,prod.quantity,prod.payedDate));
         })
           return new WellClass(responseData.id,responseData.apiNumber, responseData.permitNumber, responseData.wellName,
-            responseData.wellNumber, responseData.county, responseData.township, production);
+            responseData.wellNumber, responseData.countyName, responseData.townshipName, production);
       }));
   }
 
@@ -52,5 +51,15 @@ export class WellService {
 
   public deleteProduction(id: string, position: number){
     this.wellDaoService.deleteProduction(id, position);
+  }
+
+  public deleteWell(id: String){
+    let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/' + id;
+    return this.http.delete(url);
+  }
+
+  public updateWell(well: WellClass){
+    let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/';
+    return this.http.put(url,well);
   }
 }

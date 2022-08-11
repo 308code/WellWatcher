@@ -13,7 +13,7 @@ export class ProductionComponent implements OnInit {
   today: Date = new Date();
   wells : WellClass[] = [];
   well: WellClass = new WellClass("","","","","",
-    "","",new Array());
+    "","",[]);
 
   constructor(private wellService: WellService, private route: ActivatedRoute, private router: Router ) { }
 
@@ -22,14 +22,13 @@ export class ProductionComponent implements OnInit {
     this.well = this.wells[0];
   }
 
-  switchWell(selectedWell: string): void{
-    // this.well = this.wellService.getWell(selectedWell);
-  }
+  // switchWell(selectedWell: string): void{
+  //   this.well = this.wellService.getWell(selectedWell);
+  // }
 
   insertProduction(id: string, type: string, quantity: number, dateProduced: Date | null): void{
     this.wellService.insertProduction(id,type,quantity,dateProduced);
-    console.log("WellWatcher ==> Added production for id: " + id + " type: " + type +
-      " quantity: " + quantity + " date: " + dateProduced?.toISOString().slice(0,10))
+
     this.router.navigate(['/']).then(() => {
       console.log("SUCCESS: navigating to home page from insertProduction page.");
     }, () => {
@@ -48,7 +47,6 @@ export class ProductionComponent implements OnInit {
         result = index;
       }
     });
-    console.log("result = " + result);
     return result;
   }
 }

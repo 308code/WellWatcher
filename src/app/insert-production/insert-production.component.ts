@@ -10,11 +10,14 @@ import {WellClass} from "../model/WellClass";
 })
 export class InsertProductionComponent implements OnInit {
   today: Date = new Date();
+
   wells : WellClass[] = [];
   well: WellClass = new WellClass("","","","","","","",
     []);
 
-  constructor(private wellService: WellService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private wellService: WellService, private route: ActivatedRoute, private router: Router) {
+    this.today.toLocaleString('en-US', { timeZone: 'America/New_York' });
+  }
 
   ngOnInit(): void {
     if(this.wells.length == 0) {
@@ -31,13 +34,10 @@ export class InsertProductionComponent implements OnInit {
          this.well = well;
        });
     }
-    console.log("After INIT ==>  " + JSON.stringify(this.wells))
   }
 
   insertProduction(id: string, type: string, quantity: number, dateProduced: Date | null): void{
     this.wellService.insertProduction(id,type,quantity,dateProduced);
-    console.log("WellWatcher ==> Added production for id: " + id + " type: " + type +
-      " quantity: " + quantity + " date: " + dateProduced?.toISOString().slice(0,10))
     this.router.navigate(['/']).then(() => {
       console.log("SUCCESS: navigating to home page from insertProduction page.");
     }, () => {
