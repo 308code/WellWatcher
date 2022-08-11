@@ -45,6 +45,7 @@ export class InsertProductionComponent implements OnInit {
     });
   }
 
+
   switchWell(selectedWell: string): void{
      this.wellService.getWell(selectedWell).subscribe( well =>{
        this.well = well;

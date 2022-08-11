@@ -22,9 +22,11 @@ export class ProductionComponent implements OnInit {
     this.well = this.wells[0];
   }
 
-  // switchWell(selectedWell: string): void{
-  //   this.well = this.wellService.getWell(selectedWell);
-  // }
+  switchWell(selectedWell: string): void{
+    this.wellService.getWell(selectedWell).subscribe(well =>{
+      this.well = well;
+    });
+  }
 
   insertProduction(id: string, type: string, quantity: number, dateProduced: Date | null): void{
     this.wellService.insertProduction(id,type,quantity,dateProduced);
