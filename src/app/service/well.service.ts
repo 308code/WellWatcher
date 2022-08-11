@@ -62,4 +62,10 @@ export class WellService {
     let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/';
     return this.http.put(url,well);
   }
+
+  public insertWell(well: WellClass){
+    let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/';
+    return this.http.post(url,well);
+  }
+
 }

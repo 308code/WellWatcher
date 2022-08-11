@@ -13,15 +13,17 @@ import {FormsModule} from "@angular/forms";
 import { UpdateProductionComponent } from './update-production/update-production.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WellComponent } from './well/well.component';
+import { WellCreateComponent } from './well-create/well-create.component';
 
 const appRoutes: Routes =  [
   { path: '' , component: RecentProductionListComponent},
   { path: 'wells' , component: WellsListComponent},
+  { path: 'wells/create' , component: WellCreateComponent},
   { path: 'wells/:id' , component: WellComponent},
   { path: 'production' , component: ProductionComponent},
   { path: 'production/:id' , component: InsertProductionComponent},
-  { path: 'reports' , component: ReportsComponent},
-  { path: 'production/:id/:pos', component: UpdateProductionComponent}
+  { path: 'production/:id/:pos', component: UpdateProductionComponent},
+  { path: 'reports' , component: ReportsComponent}
 ]
 @NgModule({
   declarations: [
@@ -29,11 +31,12 @@ const appRoutes: Routes =  [
     HeaderComponent,
     RecentProductionListComponent,
     InsertProductionComponent,
-    WellsListComponent,
     ProductionComponent,
     ReportsComponent,
     UpdateProductionComponent,
-    WellComponent
+    WellsListComponent,
+    WellComponent,
+    WellCreateComponent
   ],
     imports: [
         BrowserModule,

@@ -24,7 +24,7 @@ export class WellComponent implements OnInit {
       this.well.setCountyName(countyName);
       this.well.setTownshipName(townshipName);
       this.wellService.updateWell(this.well).subscribe(() =>{
-        this.router.navigate(['/wells/']).then(() => {
+        this.router.navigate(['/wells']).then(() => {
           console.log("SUCCESS: navigating to home page from insertProduction page.");
         }, () => {
           console.log("ERROR: navigating to home page from insertProduction page.");
@@ -36,7 +36,7 @@ export class WellComponent implements OnInit {
 
   deleteWell(id: String){
     this.wellService.deleteWell(id).subscribe(() => {
-      this.router.navigate(['/wells/']).then(() => {
+      this.router.navigate(['/wells']).then(() => {
         console.log("SUCCESS: navigating to home page from insertProduction page.");
       }, () => {
         console.log("ERROR: navigating to home page from insertProduction page.");
