@@ -6,7 +6,7 @@ export interface Well {
   permitNumber: string;
   wellName: string;
   wellNumber: string;
-  county: string;
-  township: string;
+  countyName: string;
+  townshipName: string;
   production: Production[];
 }

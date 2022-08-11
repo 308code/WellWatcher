@@ -15,7 +15,6 @@ export class RecentProductionListComponent implements OnInit {
   ngOnInit(): void {
     this.wellService.getAllWells().subscribe(wells =>{
       this.wells = wells;
-      console.log(JSON.stringify(this.wells));
     });
   }
 }
