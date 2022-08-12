@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row text-center">
+    <h4>Create a New Well</h4>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="apiInputField">API #: </label>
+    </div>
+    <div class="col-4">
+      <input id="apiInputField" type="text" #apiNumber [disabled]="false"/>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="permitNumberInputField">Permit #: </label>
+    </div>
+    <div class="col-4">
+      <input id="permitNumberInputField" type="text" #permitNumber [disabled]="false" />
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="wellNameInputField">Well Name: </label>
+    </div>
+    <div class="col-4">
+      <input id="wellNameInputField" type="text" #wellName [disabled]="false" />
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="wellNumberInputField">Well Number: </label>
+    </div>
+    <div class="col-4">
+      <input id="wellNumberInputField" type="text" #wellNumber [disabled]="false" />
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="countyNameInputField">County Name: </label>
+    </div>
+    <div class="col-4">
+      <input id="countyNameInputField" type="text" #countyName [disabled]="false" />
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="townshipNameInputField">Township Name: </label>
+    </div>
+    <div class="col-4">
+      <input id="townshipNameInputField" #townshipName type="text" [disabled]="false" />
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+<div class="text-center">
+  <button type="button" [routerLink]="['/wells']" class="btn btn-secondary">Cancel</button>
+  <button type="button" class="btn btn-primary" (click)="createWell(apiNumber.value,permitNumber.value,
+  wellName.value,wellNumber.value,countyName.value,townshipName.value)">Create Well</button>
+</div>
