@@ -18,8 +18,10 @@ export class ProductionComponent implements OnInit {
   constructor(private wellService: WellService, private route: ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
-    this.wellService.getAllWells();
-    this.well = this.wells[0];
+    this.wellService.getAllWells().subscribe(wells => {
+      this.wells = wells;
+      this.well = wells[0];
+    });
   }
 
   switchWell(selectedWell: string): void{

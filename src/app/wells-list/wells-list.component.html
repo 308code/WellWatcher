@@ -11,7 +11,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let well of wells">
-    <th scope="row"><a routerLink="/wells/{{well.getId()}}">{{well.getPermitNumber()}}</a></th>
+    <th scope="row"><a routerLink="/wells/{{well.getId()}}" title="Update or Delete {{well.getWellName()}} #{{well.getWellNumber()}}">{{well.getPermitNumber()}}</a></th>
     <td>{{well.getWellName()}}&nbsp;#{{well.getWellNumber()}}</td>
     <td>{{well.getCountyName()}}</td>
     <td>{{well.getTownshipName()}}</td>
@@ -19,7 +19,8 @@
   </tbody>
 </table>
 </div>
-<div class="text-center">
+<hr>
+<div class="text-center buttons-div">
   <button type="button" [routerLink]="['/']" class="btn btn-secondary">Cancel</button>
   <button type="button" class="btn btn-primary" [routerLink]="['/wells/create']">Create Well</button>
 </div>

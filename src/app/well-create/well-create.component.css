@@ -1,7 +1,5 @@
 h4{
   padding-top: 0.5rem;
-  padding-left: 1rem;
-  margin-left: 2rem;
   color: #c12828;
 }
 
@@ -10,3 +8,13 @@ button{
   margin-right: 0.5rem;
   width: 8rem;
 }
+.inputRow{
+  padding-bottom: .25rem;
+  margin-left: -6rem;
+}
+input{
+  margin-left: -1rem;
+}
+/*.container{*/
+/*  !*width: 100%;*!*/
+/*}*/

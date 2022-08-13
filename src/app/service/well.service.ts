@@ -65,7 +65,8 @@ export class WellService {
 
   public insertWell(well: WellClass){
     let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/';
-    return this.http.post(url,well);
+    console.log("well = " + JSON.stringify(well));
+    return this.http.post(url,well, {responseType: "text"});
   }
 
 }
