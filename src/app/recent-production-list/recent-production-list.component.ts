@@ -13,7 +13,7 @@ export class RecentProductionListComponent implements OnInit {
   constructor(private wellService: WellService){ }
 
   ngOnInit(): void {
-    this.wellService.getAllWells().subscribe(wells =>{
+    this.wellService.getAllWellsByLatestProductionDate().subscribe(wells =>{
       this.wells = wells;
     });
   }
