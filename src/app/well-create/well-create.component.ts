@@ -19,8 +19,16 @@ export class WellCreateComponent implements OnInit {
                     wellNumber: string, countyName: string, townshipName: string) {
     let well: WellClass = new WellClass("", apiNumber, permitNumber, wellName, wellNumber,
       countyName, townshipName, []);
+
+
     this.wellService.insertWell(well).subscribe(() => {
-      this.router.navigate(['/wells']);
+      this.router.navigate(['/','wells']).then(() => {
+        console.log("SUCCESS: navigating to the list of wells page from insertWell page.");
+      }, () => {
+        console.log("ERROR: navigating to the list of wells page from insertWell page.");
+      });
+    },() => {
+      console.log("ERROR: With the insertWell call on createWell page using well: " + JSON.stringify(well));
     });
   }
 }

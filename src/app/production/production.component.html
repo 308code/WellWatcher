@@ -1,7 +1,7 @@
 <div class="container" id="container-div">
   <div class="row">
-    <label class="col-1 text-end" for="1wellNameAndNumber">Well:</label>
-    <select class="col-3" name="wellNameAndNumber" id="1wellNameAndNumber" #selectedWell
+    <label class="col-1 text-end" for="wellNameAndNumber">Well:</label>
+    <select class="col-3" name="wellNameAndNumber" id="wellNameAndNumber" #selectedWell
             (change)="switchWell(selectedWell.value)">
       <option *ngFor="let w of wells" [value]="w.getId()"
               [selected]="well.getId() === w.getId()">{{w.getWellName()}} #{{w.getWellNumber()}}</option>
@@ -22,7 +22,7 @@
     <tbody>
     <tr *ngFor="let prod of well.getProduction()">
       <td><input #radioSelection name="selection" value="{{well.getId()}}" id="{{well.getId()}}" type="radio"/></td>
-      <td>{{prod.getPayedDate().toISOString().slice(0,10)}}</td>
+      <td>{{prod.getPayedDate()}}</td>
       <td>{{prod.getType()}}</td>
       <td>{{prod.getQuantity()}}</td>
     </tr>
@@ -40,6 +40,10 @@
     <button type="button" class="btn btn-primary col-2"
             [routerLink]="['/', 'production', '/','{{well.getId()}}','/', 'getSelectedPosition()']">
       Update
+    </button>
+    <button type="button" class="btn btn-success col-2"
+            [routerLink]="['/', 'production', '/','{{well.getId()}}','/', 'getSelectedPosition()']">
+      Create
     </button>
   </div>
 </div>

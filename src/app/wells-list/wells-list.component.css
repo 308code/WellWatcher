@@ -7,16 +7,23 @@
 
 .wells-list-div{
   padding-left: 1rem;
+  margin-right: 1rem;
   margin-top: -0.5rem;
-  max-width: 100rem;
-  max-height: 25rem;
+  max-height: 30rem;
   overflow-x: auto;
   overflow-y: auto;
 }
 
 h4{
-  padding-top: 0.5rem;
-  padding-left: 1rem;
-  margin-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 0.15rem;
+  text-align: center;
   color: #c12828;
+}
+
+.buttons-div{
+  padding-top: 1rem;
+}
+button{
+  margin-right: 0.25rem;
 }
