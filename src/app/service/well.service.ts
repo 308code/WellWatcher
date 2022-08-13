@@ -13,6 +13,25 @@ import {ProductionClass} from "../model/productionClass.model";
 export class WellService {
   constructor(private wellDaoService: WellDaoService, private http: HttpClient) {}
 
+  getAllWellsByLatestProductionDate(): Observable<WellClass[]>{
+    let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/recent-production';
+    let production: ProductionClass[] = [];
+    return this.http.get<Well[]>(url)
+      .pipe(map(responseData => {
+        let wells: WellClass[] = [];
+        responseData.forEach( well => {
+          production = [];
+          well.production.forEach( prod => {
+            production.push(new ProductionClass(prod.type,prod.quantity,prod.payedDate));
+          });
+          wells.push(new WellClass(well.id,well.apiNumber,well.permitNumber,well.wellName,well.wellNumber,well.countyName,
+            well.townshipName,production));
+
+        });
+        return wells;
+      }));
+  }
+
   getAllWells(): Observable<WellClass[]>{
     let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells';
     let production: ProductionClass[] = [];
