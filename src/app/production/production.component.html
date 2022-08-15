@@ -1,7 +1,9 @@
 <div class="container" id="container-div">
-  <div class="row">
+  <h4>Modify Production</h4>
+  <div class="row col-12">
+    <div class="col-3"></div>
     <label class="col-1 text-end" for="wellNameAndNumber">Well:</label>
-    <select class="col-3" name="wellNameAndNumber" id="wellNameAndNumber" #selectedWell
+    <select  name="wellNameAndNumber" id="wellNameAndNumber" #selectedWell
             (change)="switchWell(selectedWell.value)">
       <option *ngFor="let w of wells" [value]="w.getId()"
               [selected]="well.getId() === w.getId()">{{w.getWellName()}} #{{w.getWellNumber()}}</option>
@@ -9,14 +11,16 @@
     <h5 class="col-1 text-end">({{well.getPermitNumber()}})</h5>
   </div>
   <br/>
+  <div class="row col-12">
+    <div class="col-3"></div>
   <div class="table-div">
   <table class="table table-striped">
     <thead>
     <tr>
       <th scope="col" class="header col-1"></th>
-      <th scope="col" class="header col-4">Date Produced</th>
-      <th scope="col" class="header col-3">Type</th>
-      <th scope="col" class="header col-3">Qty</th>
+      <th scope="col" class="header col-3">Date Produced</th>
+      <th scope="col" class="header col-2">Type</th>
+      <th scope="col" class="header col-2">Qty</th>
     </tr>
     </thead>
     <tbody>
@@ -27,11 +31,13 @@
       <td>{{prod.getQuantity()}}</td>
     </tr>
     </tbody>
+
   </table>
   </div>
+  </div>
   <br/>
-
   <div class="row">
+    <div class="row col-12">
     <div class="col-2"></div>
     <button type="button" [routerLink]="['/']" class="btn btn-secondary col-2">Cancel</button>
     <button type="button" class="btn btn-danger col-2" (click)="deleteProduction(getSelectedPosition())">
@@ -43,8 +49,9 @@
     </button>
     <button type="button" class="btn btn-success col-2"
             [routerLink]="['/', 'production', '/','{{well.getId()}}','/', 'getSelectedPosition()']">
-      Create
+      Insert
     </button>
+  </div>
   </div>
 </div>
 

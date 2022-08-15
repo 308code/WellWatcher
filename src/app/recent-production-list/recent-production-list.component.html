@@ -14,7 +14,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let well of wells">
-    <th scope="row"><a routerLink="/production/{{well.getId()}}">{{well.getPermitNumber()}}</a></th>
+    <th scope="row"><a routerLink="/production/{{well.getId()}}" title="Add Production for {{well.getWellName()}} #{{well.getWellNumber()}}">{{well.getPermitNumber()}}</a></th>
     <td>{{well.getWellName()}}&nbsp;#{{well.getWellNumber()}}</td>
     <td>{{well.getCountyName()}}</td>
     <td>{{well.getTownshipName()}}</td>
