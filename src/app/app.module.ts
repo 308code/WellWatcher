@@ -17,12 +17,12 @@ import { WellCreateComponent } from './well-create/well-create.component';
 
 const appRoutes: Routes =  [
   { path: '' , component: RecentProductionListComponent},
-  { path: 'wells' , component: WellsListComponent},
   { path: 'wells/create' , component: WellCreateComponent},
   { path: 'wells/:id' , component: WellComponent},
-  { path: 'production' , component: ProductionComponent},
-  { path: 'production/:id' , component: InsertProductionComponent},
+  { path: 'wells' , component: WellsListComponent},
   { path: 'production/:id/:pos', component: UpdateProductionComponent},
+  { path: 'production/:id' , component: InsertProductionComponent},
+  { path: 'production' , component: ProductionComponent},
   { path: 'reports' , component: ReportsComponent}
 ]
 @NgModule({
