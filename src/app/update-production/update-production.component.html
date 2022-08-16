@@ -1,3 +1,57 @@
-<p>This works</p>
-
-
+<div class="container">
+  <div class="row text-center">
+    <h4>Modify Production</h4>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="wellNameInputField">Well Name: </label>
+    </div>
+    <div class="col-4">
+      <input id="wellNameInputField" class="wide-input" type="text" [disabled]="true" [value]="well.getWellName() + ' #' + well.getWellNumber()"/>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="typeInputField">Type: </label>
+    </div>
+    <div class="col-4">
+      <select class="narrow-input" name="typeInputField" id="typeInputField" #prodType [value]="production.getType()">
+        <option [selected]="production.getType() === 'oil'">oil</option>
+        <option [selected]="production.getType() === 'gas'">gas</option>
+        <option [selected]="production.getType() === 'brine'">brine</option>
+      </select>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="quantityInputField">Quantity: </label>
+    </div>
+    <div class="col-4">
+      <input id="quantityInputField" class="narrow-input" type="number" #prodQuantity [value]="production.getQuantity()"/>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-4 text-end">
+      <label for="dateProducedInputField">Date Produced: </label>
+    </div>
+    <div class="col-4">
+      <input id="dateProducedInputField" type="date" #prodDateProduced  [value]="production.getPayedDate()"/>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+<div class="text-center">
+  <button type="button" [routerLink]="['/production/']" class="btn btn-secondary">Cancel</button>
+  <button type="button" class="btn btn-primary"
+          (click)="updateProduction(well.getId(),prodType.value,prodQuantity.valueAsNumber,
+          prodDateProduced.valueAsDate === null ? today : prodDateProduced.valueAsDate)">
+    Update
+  </button>
+</div>

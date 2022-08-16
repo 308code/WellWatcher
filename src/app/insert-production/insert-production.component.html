@@ -1,49 +1,48 @@
-<h4>Insert Production</h4>
-<div class="container" id="container-div">
-  <div class="row">
-    <label class="col-1 text-end" for="1wellNameAndNumber">Well:</label>
-    <select class="col-3" name="wellNameAndNumber" id="1wellNameAndNumber" #selectedWell
-            (change)="switchWell(selectedWell.value)">
-      <option *ngFor="let w of wells" [value]="w.getId().toString()"
-              [selected]="well.getId() === w.getId()">{{w.getWellName()}} #{{w.getWellNumber()}}</option>
-    </select>
-    <h5 class="col-1 text-end">({{well.getPermitNumber()}})</h5>
-  </div>
-  <br/>
-  <div class="row">
-    <label class="col-4 text-end" for="productionType" id="productionTypeLabel">Production Type:</label>
-    <select class="col-1 align-content-sm-start" name="productionType" id="productionType" #prodType>
-      <option value="Oil" [selected]="well.getProduction().length > 0 ? well.getProduction()[well.getProduction().length -1].getType() === 'Oil' : true">Oil
-      </option>
-      <option value="Gas" [selected]="well.getProduction().length > 0 ? well.getProduction()[well.getProduction().length - 1].getType() === 'Gas' : false">Gas
-      </option>
-      <option value="Brine" [selected]="well.getProduction().length > 0 ? well.getProduction()[well.getProduction().length - 1].getType() === 'Brine' : false">
-        Brine
-      </option>
-    </select>
-  </div>
-  <br/>
-  <div class="row">
-    <label class="col-4 text-end" for="productionQuantity" id="productionQuantityLabel">Quantity:</label>
-    <input class="col-1" id="productionQuantity" type="number" step="1" #prodQty
-           [valueAsNumber]="(well.getProduction().length > 0) ? well.getProduction()[well.getProduction().length -1].getQuantity() : 0"/>
-  </div>
-  <br/>
-  <div class="row">
-    <label class="col-4 text-end" for="dateProduced" id="dateProducedLabel">Date Produced:</label>
-    <input class="col-2" id="dateProduced" #dateProd type="date"
-           [value]="(well.getProduction().length > 0)?well.getProduction()[well.getProduction().length-1].getPayedDate():today.toISOString().slice(0,10)"/>
-  </div>
-  <br/>
+<div class="outer-div">
+  <h4>Insert Production</h4>
+  <div class="container" id="container-div">
+    <div class="row">
+      <label class="col-md-4 col-1 text-end" for="1wellNameAndNumber">Well:</label>
+      <select class="col-5" name="wellNameAndNumber" id="1wellNameAndNumber" #selectedWell
+              (change)="switchWell(selectedWell.value)">
+        <option *ngFor="let w of wells" [value]="w.getId().toString()"
+                [selected]="well.getId() === w.getId()">{{w.getWellName()}} #{{w.getWellNumber()}}</option>
+      </select>
+      <h5 class="col-1">({{well.getPermitNumber()}})</h5>
+    </div>
+    <div class="row">
+      <label class="col-4 text-end" for="productionType" id="productionTypeLabel">Production Type:</label>
+      <select class="col-2" name="productionType" id="productionType" #prodType>
+        <option value="oil"
+                [selected]="well.getProduction().length > 0 ? well.getProduction()[well.getProduction().length -1].getType() === 'oil' : true">
+          oil
+        </option>
+        <option value="gas"
+                [selected]="well.getProduction().length > 0 ? well.getProduction()[well.getProduction().length - 1].getType() === 'gas' : false">
+          gas
+        </option>
+        <option value="brine"
+                [selected]="well.getProduction().length > 0 ? well.getProduction()[well.getProduction().length - 1].getType() === 'brine' : false">
+          brine
+        </option>
+      </select>
+    </div>
+    <div class="row">
+      <label class="col-4 text-end" for="productionQuantity" id="productionQuantityLabel">Quantity:</label>
+      <input class="col-2" id="productionQuantity" type="number" step="1" #prodQty
+             [valueAsNumber]="(well.getProduction().length > 0) ? well.getProduction()[well.getProduction().length -1].getQuantity() : 0"/>
+    </div>
+    <div class="row">
+      <label class="col-4 text-end" for="dateProduced" id="dateProducedLabel">Date Produced:</label>
+      <input class="col-3" id="dateProduced" #dateProd type="date"
+             [value]="(well.getProduction().length > 0)?well.getProduction()[well.getProduction().length-1].getPayedDate():today.toISOString().slice(0,10)"/>
+    </div>
 
-  <div class="row">
-    <div>
-    <div class="col-2"></div>
-      <button type="button" [routerLink]="['/']" class="btn btn-secondary col-2">Cancel</button>
-      <button type="button" class="btn btn-primary col-2" (click)="insertProduction(
-    selectedWell.value, prodType.value, prodQty.valueAsNumber, dateProd.valueAsDate)">
-        Insert Production
-      </button>
+    <div class="row justify-content-center">
+        <button type="button" [routerLink]="['/']" class="btn btn-secondary col-2">Cancel</button>
+        <button type="button" class="btn btn-primary col-2" (click)="insertProduction(
+    selectedWell.value, prodType.value, prodQty.valueAsNumber, dateProd.valueAsDate)">Add
+        </button>
     </div>
   </div>
 </div>

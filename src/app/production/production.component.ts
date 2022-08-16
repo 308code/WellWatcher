@@ -30,27 +30,29 @@ export class ProductionComponent implements OnInit {
     });
   }
 
-  insertProduction(id: string, type: string, quantity: number, dateProduced: Date | null): void{
-    this.wellService.insertProduction(id,type,quantity,dateProduced);
-
-    this.router.navigate(['/']).then(() => {
-      console.log("SUCCESS: navigating to home page from insertProduction page.");
-    }, () => {
-      console.log("ERROR: navigating to home page from insertProduction page.");
+  deleteProduction(position: number) : void{
+    this.wellService.deleteProduction(this.well.getId(), position);
+    this.wellService.getAllWells().subscribe(wells => {
+      this.wells = wells;
+      this.well = wells[0];
     });
   }
 
-  deleteProduction(position: number) : void{
-    this.wellService.deleteProduction(this.well.getId(), position);
+  updateProduction(id: string, position: number){
+    this.router.navigate(['/production/', id, position]).then(() => {
+      console.log("update called successfully!");
+    });
   }
 
   getSelectedPosition(): number{
     let result = -1;
     this.radioSelections?.forEach((radioSelection: ElementRef, index: number) => {
+      console.log("selected = " + radioSelection.nativeElement.checked);
       if(radioSelection.nativeElement.checked){
         result = index;
       }
     });
+    console.log(result);
     return result;
   }
 }

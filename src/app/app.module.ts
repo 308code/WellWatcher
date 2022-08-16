@@ -14,14 +14,15 @@ import { UpdateProductionComponent } from './update-production/update-production
 import { HttpClientModule } from '@angular/common/http';
 import { WellComponent } from './well/well.component';
 import { WellCreateComponent } from './well-create/well-create.component';
+import { ProductionCreateComponent } from './production-create/production-create.component';
 
 const appRoutes: Routes =  [
   { path: '' , component: RecentProductionListComponent},
   { path: 'wells/create' , component: WellCreateComponent},
   { path: 'wells/:id' , component: WellComponent},
   { path: 'wells' , component: WellsListComponent},
-  { path: 'production/:id/:pos', component: UpdateProductionComponent},
   { path: 'production/:id' , component: InsertProductionComponent},
+  { path: 'production/:id/:pos', component: UpdateProductionComponent},
   { path: 'production' , component: ProductionComponent},
   { path: 'reports' , component: ReportsComponent}
 ]
@@ -36,7 +37,8 @@ const appRoutes: Routes =  [
     UpdateProductionComponent,
     WellsListComponent,
     WellComponent,
-    WellCreateComponent
+    WellCreateComponent,
+    ProductionCreateComponent
   ],
     imports: [
         BrowserModule,
