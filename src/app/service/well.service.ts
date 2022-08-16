@@ -64,12 +64,19 @@ export class WellService {
       }));
   }
 
-  public insertProduction(id: string, type: string, quantity: number, dateProduced: any): void{
-    this.wellDaoService.insertProduction(id, type,quantity,dateProduced);
-  }
+  public deleteProduction(id: string, position: number): void{
 
-  public deleteProduction(id: string, position: number){
-    this.wellDaoService.deleteProduction(id, position);
+      this.getWell(id).subscribe( well => {
+        let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/';
+        well.getProduction().splice(position,1);
+        this.http.put(url,well).subscribe(() => {
+          console.log("put was successful!")
+        }, () => {
+          console.log("put failed!")
+        })
+      },() => {
+        console.log("Failed getting the well with id: " + id + " in the deleteProduction method.");
+      });
   }
 
   public deleteWell(id: String){

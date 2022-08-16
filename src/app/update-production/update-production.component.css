@@ -1,0 +1,23 @@
+button{
+  margin-right: 0.50rem;
+}
+#container-div{
+  margin-top: 1rem;
+}
+
+h4{
+  padding-top: 0.5rem;
+  padding-left: 1rem;
+  margin-left: 2rem;
+  color: #c12828;
+}
+
+.wide-input{
+  width: 20rem;
+}
+.narrow-input{
+  width: 5rem;
+}
+input, select{
+  margin-bottom: .5rem;
+}
