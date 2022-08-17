@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WellService} from "../service/well.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {WellClass} from "../model/WellClass";
@@ -9,11 +9,12 @@ import {WellClass} from "../model/WellClass";
   styleUrls: ['./production.component.css']
 })
 export class ProductionComponent implements OnInit {
-  @ViewChildren('radioSelection') radioSelections: QueryList<any> | undefined;
   today: Date = new Date();
   wells : WellClass[] = [];
   well: WellClass = new WellClass("","","","","",
     "","",[]);
+
+  selectedIndex : number = -1;
 
   constructor(private wellService: WellService, private route: ActivatedRoute, private router: Router ) { }
 
@@ -27,6 +28,7 @@ export class ProductionComponent implements OnInit {
   switchWell(selectedWell: string): void{
     this.wellService.getWell(selectedWell).subscribe(well =>{
       this.well = well;
+      this.selectedIndex = -1;
     });
   }
 
@@ -39,20 +41,11 @@ export class ProductionComponent implements OnInit {
   }
 
   updateProduction(id: string, position: number){
-    this.router.navigate(['/production/', id, position]).then(() => {
-      console.log("update called successfully!");
+    this.router.navigate(['/production', id, position]).then(() => {
     });
   }
 
-  getSelectedPosition(): number{
-    let result = -1;
-    this.radioSelections?.forEach((radioSelection: ElementRef, index: number) => {
-      console.log("selected = " + radioSelection.nativeElement.checked);
-      if(radioSelection.nativeElement.checked){
-        result = index;
-      }
-    });
-    console.log(result);
-    return result;
+  updateSelected(pos: number): void{
+    this.selectedIndex = pos;
   }
 }
