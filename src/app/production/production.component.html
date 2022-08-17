@@ -1,7 +1,6 @@
 <div class="container" id="container-div">
   <h4>Modify Production</h4>
   <div class="row">
-    <!--    <div class="col"></div>-->
     <label class="col text-end" for="wellNameAndNumber">Well:</label>
     <select class="col" name="wellNameAndNumber" id="wellNameAndNumber" #selectedWell
             (change)="switchWell(selectedWell.value)">
@@ -22,8 +21,9 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let prod of well.getProduction()">
-        <td><input #radioSelection name="selection" value="{{well.getId()}}" id="{{well.getId()}}" type="radio"/></td>
+
+      <tr *ngFor="let prod of well.getProduction(); let i = index">
+        <td><input (change)="updateSelected(i)" type="radio" value="{{i}}" name="enums" /></td>
         <td>{{prod.getPayedDate()}}</td>
         <td>{{prod.getType()}}</td>
         <td>{{prod.getQuantity()}}</td>
@@ -35,10 +35,10 @@
   <br/>
   <div class="row justify-content-center">
     <button type="button" [routerLink]="['/']" class="btn btn-secondary col">Cancel</button>
-    <button type="button" [routerLink]="['/']" class="btn btn-danger col"
-            (click)="deleteProduction(getSelectedPosition())">Delete</button>
-    <button type="button" class="btn btn-primary col"
-            (click)="updateProduction(well.getId(), getSelectedPosition())">Update</button>
+    <button type="button" [routerLink]="['/']" class="btn btn-danger col" [disabled]="selectedIndex === -1"
+            (click)="deleteProduction(selectedIndex)">Delete</button>
+    <button type="button" class="btn btn-primary col" [disabled]="selectedIndex === -1"
+            (click)="updateProduction(well.getId(), selectedIndex)">Update</button>
     <button type="button" class="btn btn-success col" [routerLink]="['/production/',well.getId()]">Add</button>
   </div>
 </div>
