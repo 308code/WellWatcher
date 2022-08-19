@@ -6,6 +6,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {WellClass} from "../model/WellClass";
 import {ProductionClass} from "../model/productionClass.model";
+import {WellReportModel} from "../model/wellReport.model";
 
 @Injectable({
   providedIn: 'root'
@@ -91,8 +92,21 @@ export class WellService {
 
   public insertWell(well: WellClass){
     let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/';
-    console.log("well = " + JSON.stringify(well));
     return this.http.post(url,well, {responseType: "text"});
   }
 
+  public generateReport(from: Date, to: Date) : Observable<WellReportModel[]>{
+    let url = 'http://' + environment.host + ':' + environment.restApiPort + '/api/wells/reports/' +
+      from.toISOString().slice(0,10) + "/" + to.toISOString().slice(0,10);
+    let reportResult: WellReportModel[] = [];
+    return this.http.get<WellReportModel[]>(url)
+      .pipe(map(responseData => {
+        responseData.forEach( wellReportEntry => {
+          reportResult.push(new WellReportModel(wellReportEntry.id,wellReportEntry.apiNumber,wellReportEntry.permitNumber,
+            wellReportEntry.wellNameAndNumber,wellReportEntry.countyName,wellReportEntry.townshipName,wellReportEntry.oilTotal,
+            wellReportEntry.gasTotal,wellReportEntry.brineTotal));
+        });
+        return reportResult;
+      }));
+  }
 }

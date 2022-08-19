@@ -1,0 +1,60 @@
+.container{
+  padding-top: 2rem;
+}
+
+.header{
+  position: sticky;
+  top: 0;
+  background-color: #0e437c;
+  color: #efcf6d;
+}
+
+.reports-list-div{
+  padding-left: 1rem;
+  margin-right: 1rem;
+  margin-top: -0.5rem;
+  max-height: 25rem;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+h4{
+  padding-top: 1rem;
+  padding-bottom: 0.15rem;
+  text-align: center;
+  color: #c12828;
+}
+
+.selected-timeframes-radio-input{;
+  margin-left: 6rem;
+  text-align: end;
+  padding-top: 1.5rem;
+  padding-right: 2.5rem;
+  width: 12rem;
+  background-color: #d7b44c;
+  border: #c12828 1px solid;
+  border-radius: 20px;
+  color: #0e437c;
+}
+.selected-timeframes-date-input{
+  padding-top: 3rem;
+  margin-left: 2rem;
+  width: 25rem;
+  height: 10rem;
+}
+
+.input_dates{
+  width: 10rem;
+  margin-bottom: 0.5rem;
+}
+
+label{
+  padding-right: 0.5rem;
+}
+
+hr{
+  margin-top: 1rem;
+  border: none;
+  height: 2px;
+  background-color: #c12828;
+}

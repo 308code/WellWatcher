@@ -1,1 +1,65 @@
-<p>reports works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="align-content-lg-end selected-timeframes-radio-input">
+      <label for="last_year_radio" class="radio_btn_label">Last Year</label>
+      <input id="last_year_radio" class="radio_btn_input" type="radio" name="time_frame" value="Last Year"
+             (change)="setTimes('Last Year')"/>
+      <br/>
+      <label for="this_year_radio" class="radio_btn_label">This Year</label>
+      <input id="this_year_radio" class="radio_btn_input" type="radio" name="time_frame" [checked]="true"
+             value="This Year" (change)="setTimes('This Year')"/>
+      <br/>
+      <label for="last_quarter_radio" class="radio_btn_label">Last Quarter</label>
+      <input id="last_quarter_radio" class="radio_btn_input" type="radio" name="time_frame" value="Last Quarter"
+             (change)="setTimes('Last Quarter')"/>
+      <br/>
+      <label for="this_quarter_radio" class="radio_btn_label">This Quarter</label>
+      <input id="this_quarter_radio" class="radio_btn_input" type="radio" name="time_frame" value="This Quarter"
+             (change)="setTimes('This Quarter')"/>
+      <br/>
+      <label for="other_radio" class="radio_btn_label">Custom</label>
+      <input id="other_radio" class="radio_btn_input" type="radio" name="time_frame" value="Other"
+             (change)="setTimes('Custom')"/>
+    </div>
+    <div class="col-6 selected-timeframes-date-input">
+      <label class="col2 col-md-3 text-end">From Date:</label>
+      <input type="date" [disabled]=disableDates class="input_dates" #fromHtml (change)="generateReport(
+  fromHtml?.valueAsDate?.toISOString()?.slice(0,10),toHtml?.valueAsDate?.toISOString()?.slice(0,10))"
+             [defaultValue]="from.toISOString().slice(0,10) "/>
+      <br/>
+      <label class="col2 col-md-3 text-end">To Date:</label>
+      <input type="date" [disabled]=disableDates class="input_dates" #toHtml (change)="generateReport(
+  fromHtml?.valueAsDate?.toISOString()?.slice(0,10),toHtml?.valueAsDate?.toISOString()?.slice(0,10))"
+             [defaultValue]="to.toISOString().slice(0,10)"/>
+    </div>
+  </div>
+  <h4>Generated Report</h4>
+  <div class="reports-list-div">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col" class="header col-1">Permit #</th>
+        <th scope="col" class="header col-3">Well</th>
+        <th scope="col" class="header col-2">County</th>
+        <th scope="col" class="header col-2">Township</th>
+        <th scope="col" class="header col-1">Oil</th>
+        <th scope="col" class="header col-1">Gas</th>
+        <th scope="col" class="header col-1">Brine</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let entry of report">
+        <td>{{entry.permitNumber}}</td>
+        <td>{{entry.wellNameAndNumber}}</td>
+        <td>{{entry.countyName}}</td>
+        <td>{{entry.townshipName}}</td>
+        <td>{{entry.oilTotal}}</td>
+        <td>{{entry.gasTotal}}</td>
+        <td>{{entry.brineTotal}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+<hr />
+</div>
