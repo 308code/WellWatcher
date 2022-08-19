@@ -8,13 +8,18 @@ button{
   margin-right: 0.5rem;
   width: 8rem;
 }
+
 .inputRow{
   padding-bottom: .25rem;
   margin-left: -6rem;
 }
+
 input{
   margin-left: -1rem;
 }
-/*.container{*/
-/*  !*width: 100%;*!*/
-/*}*/
+
+hr{
+  border: none;
+  height: 2px;
+  background-color: #c12828;
+}

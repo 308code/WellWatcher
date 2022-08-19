@@ -20,3 +20,17 @@ h4{
   text-align: center;
   color: #c12828;
 }
+
+.timeframe_radio_btn_div{
+  width: 50rem;
+  height: 20rem;
+  border: #012246 2px solid;
+  opacity: 0.83;
+}
+
+hr{
+  margin-top: 1rem;
+  border: none;
+  height: 2px;
+  background-color: #c12828;
+}
