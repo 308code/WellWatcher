@@ -7,6 +7,10 @@
   overflow-y: auto;
 }
 
+a{
+  text-decoration: none;
+}
+
 .header{
   position: sticky;
   top: 0;

@@ -10,7 +10,7 @@ img{
 
 #header-links{
   float: right;
-  padding-top: 4.3rem;
+  padding-top: 4.0rem;
 }
 
 .header-links{
@@ -32,3 +32,4 @@ a:visited{
   text-decoration: none;
   color: #efd296;
 }
+
