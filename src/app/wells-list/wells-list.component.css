@@ -5,6 +5,10 @@
   color: #efcf6d;
 }
 
+a{
+  text-decoration: none;
+}
+
 .wells-list-div{
   padding-left: 1rem;
   margin-right: 1rem;
