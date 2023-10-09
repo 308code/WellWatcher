@@ -19,7 +19,7 @@
     <td>{{well.getCountyName()}}</td>
     <td>{{well.getTownshipName()}}</td>
     <td *ngIf="well.getProduction().length > 0;else emptyProduction">{{well.getProduction()[well.getProduction().length -1].getType()}}</td>
-    <td *ngIf="well.getProduction().length > 0;else emptyProduction">{{well.getProduction()[well.getProduction().length -1].getQuantity()}}</td>
+    <td *ngIf="well.getProduction().length > 0;else emptyProduction">{{well.getProduction()[well.getProduction().length -1].getQuantity() | number: '0.0-2'}}</td>
     <td *ngIf="well.getProduction().length > 0;else emptyProduction">{{well.getProduction()[well.getProduction().length - 1].getPayedDate()}}</td>
     <ng-template #emptyProduction>
       <td></td>
