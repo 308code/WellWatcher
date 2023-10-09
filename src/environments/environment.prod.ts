@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  host: '3.20.226.174',
+  host: '18.223.159.186',
   restApiPort: '8080'
 };

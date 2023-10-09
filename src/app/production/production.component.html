@@ -25,7 +25,7 @@
         <td><input (change)="updateSelected(i)" type="radio" value="{{i}}" name="enums" /></td>
         <td>{{prod.getPayedDate()}}</td>
         <td>{{prod.getType()}}</td>
-        <td>{{prod.getQuantity()}}</td>
+        <td>{{prod.getQuantity() | number: '0.0-2'}}</td>
       </tr>
       </tbody>
 
